@@ -6,7 +6,8 @@ export default function Home() {
   const [ads, setAds] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/ads')
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    axios.get(`${apiBase}/api/ads`)
       .then(res => setAds(res.data))
       .catch(err => console.error(err));
   }, []);
